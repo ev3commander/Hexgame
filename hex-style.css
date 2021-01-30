@@ -1,3 +1,202 @@
+body {
+    display: grid;
+    font-size: 20px;
+    background-color: #1c1c1c;
+    color: white;
+    font-family: Verdana, Arial, sans-serif;
+    text-align: justify;
+    line-height: 1.5;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header, footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    background-color: #242424;
+    padding: 20px;
+    margin: 20px;
+}
+
+footer {
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+header .social-links a {
+    margin: 0.7vw;
+}
+
+header .social-links svg {
+    height: 3em;
+    width: 3em;
+    fill: white;
+}
+
+header .social-links #resume-link-path {
+    fill: #1c1c1c;
+}
+
+header a,
+header a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    line-height: 60px;
+    margin: 20px;
+    font-weight: bold;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+article {
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    width: calc(70% - 100px);
+    background-color: #242424;
+}
+
+.figures {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+code.block {
+    display: block;
+    white-space: pre-wrap
+}
+
+code.inline {
+    display: inline;
+}
+
+nav {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: calc(30% - 40px);
+    background-color: #242424;
+}
+
+#clap {
+    float: left;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    padding: 20px;
+    width: calc(100% - 80px);
+    background-color: #242424;
+}
+
+#clap * {
+    margin: auto;
+}
+
+.row {
+    width: 66%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#options * {
+    margin: revert;
+}
+
+#options #alternative {
+    width: 50px;
+}
+
+#options #radios,
+#options #input {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+textarea {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    resize: none;
+    display: block;
+    width: 100%;
+}
+
+#copied {
+    visibility: hidden;
+}
+
+#copied.visible {
+    visibility: visible;
+}
+
+article a:link,
+article a:visited,
+article a:active,
+nav a:link,
+nav a:visited,
+nav a:active {
+    text-decoration-line: none;
+    color: #4791e6;
+}
+
+article a:hover,
+nav a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+    .row { 
+     width: 75%;
+     }
+ }
+
+@media (max-width: 800px) {
+    article {
+        display: block;
+        padding: 20px;
+        margin: 20px;
+        width: calc(100% - 80px);
+    }
+
+    nav {
+        display: block;
+        box-sizing: border-box;
+        padding: 20px;
+        margin: 20px;
+        width: auto;
+    }
+
+   .row { 
+    width: 95%;
+    }
+}
 #game {
     display: flex;
     text-rendering: optimizeLegibility;
