@@ -15,6 +15,17 @@ let foundWordsList = [];
 /**
  * sets up game
  */
+var getInput = () => {       
+    var pangram = "";
+    pangram=prompt("Please enter a string with seven unique letters. The first one will be the center letter.") || "";
+       for (let i = 0; i < pangram.length/* - 1*/; i++) {
+                if ((!pangLetters.includes(pangram[i].toUpperCase())) && (/^[a-zA-Z]$/.test(pangram[i])) ) {
+                    pangLetters.push(pangram[i].toUpperCase());
+                }
+            }
+    if(pangLetters.length == 7){return pangLetters;}
+    else{return getInput();}
+                     }
 const start = () => {
     // set up controls - assign buttons to functions
     allHexagons = document.querySelectorAll(".outer-hexagon, .central-hexagon");
@@ -40,21 +51,14 @@ const start = () => {
     Math.seedrandom("" + today.getFullYear() + today.getMonth() + today.getDate());
 
     // set up game
-    var pangram = "";
-    pangramLetters = [];
-    while (pangramLetters.length != 7){
-        pangram=prompt("Please enter a string with seven unique letters. The first one will be the center letter.");
-       for (let i = 0; i < pangram.length/* - 1*/; i++) {
-                if ((!pangramLetters.includes(pangram[i].toUpperCase())) && (/^[a-zA-Z]$/.test(pangram[i])) ) {
-                    pangramLetters.push(pangram[i].toUpperCase());
-                }
-            }
+    pangramLetters = getInput();
+
        middleLetter = pangramLetters[0]; pangramLetters.splice(0,1);
         for (let i = 0; i < pangramLetters.length; i++) {
                 outerHexagons[i].innerText = pangramLetters[i];
             }
             centralHexagon.innerText = middleLetter;
-    }
+    
     /*fetch("sevenletterwords.txt").then((response) => {
         return response.text().then((file) => {
             const lines = file.split(/\n/g);
