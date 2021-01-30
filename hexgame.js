@@ -40,7 +40,22 @@ const start = () => {
     Math.seedrandom("" + today.getFullYear() + today.getMonth() + today.getDate());
 
     // set up game
-    fetch("sevenletterwords.txt").then((response) => {
+    var pangram = "";
+    pangramLetters = [];
+    while (pangramLetters.length != 7){
+        pangram=prompt("Please enter a string with seven unique letters. The first one will be the center letter.");
+       for (let i = 0; i < pangram.length/* - 1*/; i++) {
+                if ((!pangramLetters.includes(pangram[i].toUpperCase())) && (/^[a-zA-Z]$/.test(pangram[i])) ) {
+                    pangramLetters.push(pangram[i].toUpperCase());
+                }
+            }
+       middleLetter = pangramLetters[0]; pangramLetters.splice(0,1);
+        for (let i = 0; i < pangramLetters.length; i++) {
+                outerHexagons[i].innerText = pangramLetters[i];
+            }
+            centralHexagon.innerText = middleLetter;
+    }
+    /*fetch("sevenletterwords.txt").then((response) => {
         return response.text().then((file) => {
             const lines = file.split(/\n/g);
             const count = (lines || []).length;
@@ -66,7 +81,8 @@ const start = () => {
             }
             centralHexagon.innerText = middleLetter;
         });
-    });
+    });*/
+    
 
     fetch("dictionary.txt").then((response) => {
         return response.text().then((file) => {
