@@ -17,6 +17,7 @@ let foundWordsList = [];
  */
 var getInput = () => {       
     var pangram = "";
+    var pangLetters = [];
     pangram=prompt("Please enter a string with seven unique letters. The first one will be the center letter.") || "";
        for (let i = 0; i < pangram.length/* - 1*/; i++) {
                 if ((!pangLetters.includes(pangram[i].toUpperCase())) && (/^[a-zA-Z]$/.test(pangram[i])) ) {
