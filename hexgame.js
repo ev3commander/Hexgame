@@ -1,4 +1,5 @@
 let pangramLetters = [];
+let str = "";
 let middleLetter = "";
 
 let allHexagons = [];
@@ -9,7 +10,7 @@ let entryContent = null;
 let messageBox = null;
 let foundWords = null;
 let points = null;
-
+var save = {};
 let dictionary = [];
 let foundWordsList = [];
 /**
@@ -24,9 +25,15 @@ var getInput = () => {
                     pangLetters.push(pangram[i].toUpperCase());
                 }
             }
-    if(pangLetters.length == 7){return pangLetters;}
+    if(pangLetters.length == 7){str = saveStr(pangLetters); return pangLetters;}
     else{return getInput();}
                      }
+
+var saveStr = pl => {
+    var out = "";
+    for(let i=65;i<91;i++){if(pl.indexOf(String.fromCharCode(i))==-1){out+="n"}else if(pl.indexOf(String.fromCharCode(i))==0){out+="c"} else {out+= "a"}}
+    return out;
+}
 const start = () => {
     // set up controls - assign buttons to functions
     allHexagons = document.querySelectorAll(".outer-hexagon, .central-hexagon");
@@ -52,6 +59,7 @@ const start = () => {
     Math.seedrandom("" + today.getFullYear() + today.getMonth() + today.getDate());
 
     // set up game
+    if(localStorage.getItem("save")){save = JSON.parse(localStorage.getItem("save"));}
     pangramLetters = getInput();
 
        middleLetter = pangramLetters[0]; pangramLetters.splice(0,1);
@@ -59,6 +67,13 @@ const start = () => {
                 outerHexagons[i].innerText = pangramLetters[i];
             }
             centralHexagon.innerText = middleLetter;
+    if(save[str] !== undefined){
+    points.innerText=save[str]["pts"];
+    for (let i=0;i<save[str]["words"].length;i++){
+    foundWords.innerText += save[str]["words"][i] + "\n";
+    foundWordsList.push(save[str]["words"][i]);
+    }
+    } else {save[str]={pts:0,words:[]}; localStorage.setItem('save',JSON.stringify(save));}
     
     /*fetch("sevenletterwords.txt").then((response) => {
         return response.text().then((file) => {
@@ -208,14 +223,15 @@ const correctWord = (word) => {
     //add word to list
     foundWords.innerText += word + "\n";
     foundWordsList.push(word);
-
+    save[str]["words"].push(word);
     //add points
     let currentPoints = parseInt(points.innerText);
     let newPoints = word.length + 1;
     if (word.length === 4) newPoints = 1;
     points.innerText = currentPoints + newPoints;
-
+    save[str]["pts"]+= newPoints;
     entryContent.innerText = "";
+    localStorage.setItem('save',JSON.stringify(save));
 };
 
 /**
